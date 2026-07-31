@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Fast-Snake - Helen López</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Es la parte visible del juego que incluye el espacio del juego, controles de teclas o joystick y cuadros de información. -->
+  <div id="game-container">
+    
+    <!-- Se muestra los puntos obtenidos, la cantidad de vidas restantes y el tiempo desde el inicio del juego. -->
+    <div id="hud">
+      <div><span class="stat-label">Puntos:</span> <span id="score" class="stat-value">0</span></div>
+      <div><span class="stat-label">Vidas:</span> <span id="lives" class="stat-value">❤️❤️❤️</span></div>
+      <div><span class="stat-label">Tiempo:</span> <span id="timer" class="stat-value">00:00</span></div>
+    </div>
+
+    <canvas id="game-board"></canvas>
+
+    <!-- Muestra los gráficos de los botones para controlar el movimiento de la serpiente cuando se juega en celular. -->
+    <div id="joystick-area">
+      <div class="dpad">
+        <button class="dpad-btn" id="btn-up">▲</button>
+        <button class="dpad-btn" id="btn-left">◄</button>
+        <button class="dpad-btn" id="btn-right">►</button>
+        <button class="dpad-btn" id="btn-down">▼</button>
+      </div>
+    </div>
+
+    <!-- Muestra la pantalla de bienvenida, permitiendo al jugador elegir el dispositivo en el que jugará. -->
+    <div id="start-modal" class="modal">
+      <div class="modal-card">
+        <div class="author-name">Helen López</div>
+        <div class="game-title">Fast-Snake</div>
+        <p style="color: #ccc; font-size: 0.9rem; margin-bottom: 15px;">Selecciona tu dispositivo para jugar:</p>
+        <div class="btn-group">
+          <button class="btn" onclick="startGame('mobile')">📱 Celular</button>
+          <button class="btn" onclick="startGame('desktop')">💻 Computadora</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Muestra la pantalla final en la que aparece el tiempo, puntos, alimentos consumidos y el botón para volver a jugar. -->
+    <div id="gameover-modal" class="modal hidden">
+      <div class="modal-card">
+        <h2 style="color: var(--fuchsia); font-size: 2rem; margin-bottom: 10px;">¡Juego Terminado!</h2>
+        
+        <div class="stats-summary">
+          <p>⏳ <strong>Tiempo de juego:</strong> <span id="final-time" style="color: var(--turquoise);">00:00</span></p>
+          <p>⭐ <strong>Puntos obtenidos:</strong> <span id="final-score" style="color: var(--yellow);">0</span></p>
+          <p>🍎 <strong>Alimentos consumidos:</strong> <span id="final-food" style="color: var(--fuchsia);">0</span></p>
+        </div>
+
+        <div class="btn-group">
+          <button class="btn" onclick="resetGame()">Jugar de nuevo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

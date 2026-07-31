@@ -1,0 +1,233 @@
+/* Se definen las variables, los colores, rellenos, tipos de letra, tamaño y color de letra, formato y dimensión de la página. */
+:root {
+  --bg-purple: #1e112a;
+  --panel-purple: #2a163b;
+  --turquoise: #00f2fe;
+  --fuchsia: #ff007f;
+  --yellow: #ffe600;
+  --purple-accent: #8a2be2;
+  --white: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--bg-purple);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+#game-container {
+  position: relative;
+  width: 100vw;
+  max-width: 600px;
+  height: 100vh;
+  max-height: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--panel-purple);
+  border: 4px solid var(--purple-accent);
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(0, 242, 254, 0.3);
+  overflow: hidden;
+}
+
+/* --- PANEL SUPERIOR (HUD) ---
+   Función: Estiliza la barra superior de información del usuario (puntos, vidas y tiempo) 
+   utilizando un degradado y alineación distribuida mediante Flexbox. */
+#hud {
+  width: 100%;
+  padding: 12px 20px;
+  background: linear-gradient(90deg, var(--purple-accent), #4a0080);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-bottom: 2px solid var(--turquoise);
+  z-index: 10;
+}
+
+#hud div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.stat-label {
+  color: var(--yellow);
+}
+
+.stat-value {
+  color: var(--white);
+}
+
+/* Muestra los efectos animados y el fondo del juego, haciendo uso de figuras y patrones. */
+#game-board {
+  flex: 1;
+  width: 100%;
+  background-color: #120919;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(138, 43, 226, 0.15) 0%, transparent 80%),
+    repeating-linear-gradient(60deg, rgba(0, 242, 254, 0.05) 0, rgba(0, 242, 254, 0.05) 1px, transparent 0, transparent 15px),
+    repeating-linear-gradient(120deg, rgba(0, 242, 254, 0.05) 0, rgba(0, 242, 254, 0.05) 1px, transparent 0, transparent 15px);
+  display: block;
+}
+
+/* Mantiene una posición para los botones de celular(táctil). */
+#joystick-area {
+  display: none;
+  width: 100%;
+  height: 160px;
+  background: rgba(20, 10, 30, 0.8);
+  border-top: 2px solid var(--fuchsia);
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
+}
+
+.dpad {
+  position: relative;
+  width: 130px;
+  height: 130px;
+}
+
+.dpad-btn {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  background: var(--fuchsia);
+  border: 2px solid var(--yellow);
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
+  cursor: pointer;
+}
+
+.dpad-btn:active {
+  background: var(--yellow);
+  color: black;
+}
+
+#btn-up { top: 0; left: 44px; }
+#btn-down { bottom: 0; left: 44px; }
+#btn-left { top: 44px; left: 0; }
+#btn-right { top: 44px; right: 0; }
+
+/* Aplica las figuras de los paneles de fondo, animaciones de entrada, tipos de letras e interacciones con los botones. */
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(18, 9, 25, 0.92);
+  backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  text-align: center;
+  z-index: 100;
+}
+
+.modal-card {
+  background: var(--panel-purple);
+  border: 3px solid var(--turquoise);
+  border-radius: 20px;
+  padding: 30px 20px;
+  width: 90%;
+  max-width: 380px;
+  box-shadow: 0 0 30px rgba(255, 0, 127, 0.4);
+  animation: popIn 0.3s ease-out;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.author-name {
+  color: var(--turquoise);
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.game-title {
+  color: var(--fuchsia);
+  font-size: 2.5rem;
+  font-weight: 900;
+  text-shadow: 2px 2px 8px rgba(255, 230, 0, 0.6);
+  margin-bottom: 20px;
+}
+
+.btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.btn {
+  background: linear-gradient(45deg, var(--fuchsia), var(--purple-accent));
+  color: var(--white);
+  border: 2px solid var(--yellow);
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(45deg, var(--turquoise), var(--fuchsia));
+  box-shadow: 0 0 15px var(--turquoise);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.stats-summary {
+  text-align: left;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  border-radius: 10px;
+  margin: 15px 0;
+  border-left: 4px solid var(--yellow);
+}
+
+.stats-summary p {
+  margin: 8px 0;
+  font-size: 1rem;
+}
+
+.hidden {
+  display: none !important;
+}
